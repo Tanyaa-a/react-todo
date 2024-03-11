@@ -1,11 +1,16 @@
-const AddTodoForm = () => {
+const TodoForm = () => {
+
+    const handleChange = (event) => {
+        console.log(event)
+    }
+
     return (
         <form>
-            <input id="todoTitle" type="text" />
-            <label htmlFor="todoTitle">Title </label>
+            <input id="todoInput" type="text" onChange={handleChange} />
+            <label htmlFor="todoTitle"> Title </label>
             <button type="submit">Add</button>
         </form>
     )
 }
 
-export default AddTodoForm
+export default TodoForm

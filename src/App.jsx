@@ -1,5 +1,5 @@
 import TodoList from "./TodoList";
-import AddTodoForm from "./AddTodoForm"
+import TodoForm from "./AddTodoForm"
 
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
         Todo List
       </h1>
       <TodoList />
-      <AddTodoForm />
+      <TodoForm />
     </div>
   )
 }

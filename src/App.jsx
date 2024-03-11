@@ -1,19 +1,6 @@
-const todoList = [
-  {
-    id: 0,
-    title: 'Review video lessons',
-  },
-  {
-    id: 1,
-    title: 'Read the "React" book',
+import TodoList from "./TodoList";
+import TodoForm from "./AddTodoForm"
 
-  },
-    {
-      id: 2,
-      title: 'Compleat the assignment', 
-    },
-  
-]
 
 function App() {
   return (
@@ -21,15 +8,8 @@ function App() {
       <h1>
         Todo List
       </h1>
-      
-      <ul>
-        {todoList.map(function(item) {
-          return (
-            <li key={item.id}>{item.title}</li>
-          );
-       })} 
-        
-      </ul>
+      <TodoList />
+      <TodoForm />
     </div>
   )
 }

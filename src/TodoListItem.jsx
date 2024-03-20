@@ -7,12 +7,10 @@ const TodoListItem = (props) => {
     </li>
   ) 
 }
-
 TodoListItem.propTypes = {
   item: PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired
   }).isRequired
 };
-
 export default TodoListItem;

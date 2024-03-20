@@ -13,8 +13,7 @@ const todoList = [
         id: 2,
         title: 'Compleat the assignment', 
       }  
-]
-  
+] 
 const TodoList = () => {
   return (
     <ul>
@@ -24,5 +23,4 @@ const TodoList = () => {
     </ul>
   );
 }
-
 export default TodoList

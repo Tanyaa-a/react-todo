@@ -1,3 +1,5 @@
+import TodoListItem from "./TodoListItem";
+
 const todoList = [
     {
       id: 0,
@@ -10,19 +12,15 @@ const todoList = [
       {
         id: 2,
         title: 'Compleat the assignment', 
-      },  
-]
-  
+      }  
+] 
 const TodoList = () => {
-    return (
-        <ul>
-        {todoList.map((item) => {
-          return (
-            <li key={item.id}>{item.title}</li>
-          );
-       })}   
-      </ul> 
-    )
+  return (
+    <ul>
+      {todoList.map((item) => {
+       return <TodoListItem key={item.id} item={item} />
+      })}
+    </ul>
+  );
 }
-
 export default TodoList

@@ -1,9 +1,8 @@
 import React from "react";
 
-const TodoForm = (props) => {
+const TodoForm = ({onAddTodo}) => {
   const [todoTitle, setTodoTitle] = React.useState("");
   const handleChange = (event) => {
-    console.log(event.target.value);
   };
   const handleTitleChange = (event) => {
     let newTodoTitle = event.target.value;
@@ -11,9 +10,7 @@ const TodoForm = (props) => {
   };
   const handleAddTodo = (event) => {
     event.preventDefault();
-    //let todoTitle = event.target.title.value; //retrieve the value of the title element from the event target and store it in a variable named todoTitle
-    // event.target.reset();
-    props.onAddTodo({ title: todoTitle, id: Date.now() });
+    onAddTodo({ title: todoTitle, id: Date.now() });
     setTodoTitle("");
   };
   return (

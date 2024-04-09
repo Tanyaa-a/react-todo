@@ -1,5 +1,4 @@
-import { children } from "react";
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 
 export default function InputWithLabel({
   children,
@@ -7,7 +6,7 @@ export default function InputWithLabel({
   handleTitleChange,
 }) {
   const inputRef = useRef(null);
-  React.useEffect(() => {
+  useEffect(() => {
     inputRef.current.focus();
   });
   return (

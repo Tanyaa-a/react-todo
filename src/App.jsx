@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TodoList from "./TodoList";
 import TodoForm from "./AddTodoForm";
 
+// Custom hook to manage semi-persistent state using localStorage
 const useSemiPersistentState = () => {
   const [todoList, setTodoList] = React.useState(
     JSON.parse(localStorage.getItem("savedTodoList")) || []
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.setItem("savedTodoList", JSON.stringify(todoList));
   }, [todoList]);
 
@@ -15,18 +16,21 @@ const useSemiPersistentState = () => {
 };
 
 function App() {
-  const [todoList, setTodoList] = useSemiPersistentState("");
+  const [todoList, setTodoList] = useSemiPersistentState();
   function addTodo(newTodo) {
     setTodoList([...todoList, newTodo]);
-    
+  }
+
+  function removeTodo(id) {
+    const newTodoList = todoList.filter((todo) => todo.id !== id);
+    setTodoList(newTodoList);
   }
   return (
     <>
       <h1>Todo List</h1>
       <TodoForm onAddTodo={addTodo} />
-      <TodoList todoList={todoList} />
+      <TodoList onRemoveTodo={removeTodo} todoList={todoList} />
     </>
   );
 }
 export default App;
-

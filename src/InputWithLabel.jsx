@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 
 export default function InputWithLabel({
   children,
@@ -11,7 +11,7 @@ export default function InputWithLabel({
   });
   return (
     <>
-      <label htmlFor="todoTitle">{children}</label>
+      <label htmlFor="todoInput">{children}</label>
       <input
         ref={inputRef}
         id="todoInput"

@@ -33,7 +33,7 @@ function App() {
       setTodoList(todos);
       setIsLoading(false);
     } catch (error) {
-      console.error(error);
+      console.error(error.message);
     }
   }
 // Fetch data from Airtable when component mounts

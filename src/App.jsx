@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import TodoList from "./TodoList";
 import TodoForm from "./AddTodoForm";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 
 function App() {
   const [todoList, setTodoList] = useState([]);
@@ -33,7 +35,7 @@ function App() {
       setTodoList(todos);
       setIsLoading(false);
     } catch (error) {
-      console.error(error);
+      console.error(error.message);
     }
   }
 // Fetch data from Airtable when component mounts
@@ -55,15 +57,25 @@ function App() {
     setTodoList(newTodoList);
   }
   return (
-    <>
-      <h1>Todo List</h1>
-      <TodoForm onAddTodo={addTodo} />
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <TodoList onRemoveTodo={removeTodo} todoList={todoList} />
-      )}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/"
+          element={
+            <>
+            <h1>Todo List</h1>
+        <TodoForm onAddTodo={addTodo} />
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <TodoList onRemoveTodo={removeTodo} todoList={todoList} />
+        )}   
+            </>
+        }>
+        </Route>
+        <Route path="/new" element={<h1>New Todo List</h1>}></Route>
+      
+      </Routes>
+    </BrowserRouter>
   );
 }
 export default App;

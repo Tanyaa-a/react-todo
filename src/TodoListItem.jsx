@@ -1,22 +1,17 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
+import style from './TodoListItem.module.css'
 
-const TodoListItem = ({ item, onRemoveTodo }) => {
+const TodoListItem = (props) => {
   return (
-    <>
-      <li>
-        <span>{item.title}</span>
-        <button onClick={() => onRemoveTodo(item.id)} type="button">
-          Remove
-        </button>
-      </li>
-    </>
-  );
-};
+    <li>
+      <span className={style.ListItem}>{props.item.title}</span> 
+    </li>
+  ) 
+}
 TodoListItem.propTypes = {
   item: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-  }).isRequired,
-  
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired
+  }).isRequired
 };
 export default TodoListItem;

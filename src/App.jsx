@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import TodoList from "./TodoList";
-import TodoForm from "./AddTodoForm";
+import TodoList from "./components/TodoList";
+import TodoForm from "./components/AddTodoForm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import style from './TodoListItem.module.css'
-
+import style from "./components/TodoListItem.module.css";
 
 function App() {
   const [todoList, setTodoList] = useState([]);
@@ -16,9 +15,7 @@ function App() {
         Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
       },
     };
-    const url = `https://api.airtable.com/v0/${
-      import.meta.env.VITE_AIRTABLE_BASE_ID
-    }/${import.meta.env.VITE_TABLE_NAME}`;
+    const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}?view=Grid%20view&sort[0][field]=title&sort[0][direction]=asc`;
     try {
       const response = await fetch(url, options);
 
@@ -27,7 +24,8 @@ function App() {
       }
 
       const data = await response.json();
-//accepts the results of mapping data.records
+      console.log("Fetched data from Airtable:", data);
+      //accepts the results of mapping data.records
       const todos = data.records.map((todo) => ({
         id: todo.id,
         title: todo.fields.title,
@@ -39,7 +37,7 @@ function App() {
       console.error(error.message);
     }
   }
-// Fetch data from Airtable when component mounts
+  // Fetch data from Airtable when component mounts
   useEffect(() => {
     fetchData();
   }, []);
@@ -60,21 +58,21 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/"
+        <Route
+          path="/"
           element={
             <>
-            <h1 className={style.TodoTitle}>Todo List</h1>
-        <TodoForm onAddTodo={addTodo} />
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : (
-          <TodoList onRemoveTodo={removeTodo} todoList={todoList} />
-        )}   
+              <h1 className={style.TodoTitle}>Todo List</h1>
+              <TodoForm onAddTodo={addTodo} />
+              {isLoading ? (
+                <p>Loading...</p>
+              ) : (
+                <TodoList onRemoveTodo={removeTodo} todoList={todoList} />
+              )}
             </>
-        }>
-        </Route>
+          }
+        ></Route>
         <Route path="/new" element={<h1>New Todo List</h1>}></Route>
-      
       </Routes>
     </BrowserRouter>
   );

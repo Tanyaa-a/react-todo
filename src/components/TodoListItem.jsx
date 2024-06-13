@@ -1,6 +1,6 @@
 import style from './TodoListItem.module.css'
 import PropTypes from "prop-types";
-import trashIcon from "./assets/trash.svg";
+import trashIcon from "../assets/trash-icon.svg"
 
 const TodoListItem = ({ item, onRemoveTodo }) => {
   return (
@@ -17,9 +17,8 @@ const TodoListItem = ({ item, onRemoveTodo }) => {
 };
 TodoListItem.propTypes = {
   item: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-  }).isRequired,
-  
+  }),  
 };
 export default TodoListItem;

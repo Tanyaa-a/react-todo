@@ -26,7 +26,7 @@ export default function InputWithLabel({
   );
 }
 
-InputWithLabel.PropTypes = {
+InputWithLabel.propTypes = {
   children: PropTypes.node.isRequired,
   todoTitle: PropTypes.string.isRequired,
   handleTitleChange: PropTypes.func.isRequired,

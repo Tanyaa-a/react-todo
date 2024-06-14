@@ -14,11 +14,14 @@ const TodoList = ({ todoList, onRemoveTodo }) => {
 };
 
 TodoList.propTypes = {
-  TodoList: PropTypes.arrayOf({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-  }), 
+  todoList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   onRemoveTodo: PropTypes.func.isRequired,
 };
+
 
 export default TodoList;

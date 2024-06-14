@@ -19,6 +19,6 @@ TodoListItem.propTypes = {
   item: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-  }),  
+  }), 
 };
 export default TodoListItem;

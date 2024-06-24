@@ -1,3 +1,13 @@
+.TodoListWrapper {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid rgba(204, 204, 204, 0.1);
+  border-radius: 10px;
+  background-color: rgba(249, 249, 249, 0.5);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+ 
+}
 .TodoTitle {
   color: #fff;
   font-size: 3rem;
@@ -48,6 +58,10 @@
 }
 
 @media (max-width: 519px) {
+
+  .InputTitle input {
+    margin: 0 .5rem
+  }
     .ListItem {
       margin: 1.3rem 0;
     }
@@ -58,9 +72,8 @@
 ul {
   padding: 0;
 }
-.ListItemButton {
+.DeleteIcon, .EditIcon {
   background-color: #a9c9ff;
-  border: 1px solid transparent;
   padding: 0.4rem 0.6rem;
   border-radius: 50px;
   font-size: 1rem;
@@ -68,12 +81,70 @@ ul {
   cursor: pointer;
 }
 
-.TrashIcon {
-  width: 20px;
-  height: 20px;
-  padding-top: 2px;
+
+
+.DeleteIcon:hover, .EditIcon:hover {
+  color: #646cff;
 }
 
-.ListItemButton:hover {
-  border-color: #646cff;
+.ListItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .7rem;
+  border-bottom: 1px solid #ccc;
+  background-color: rgba(249, 249, 249, 0.9);
+}
+
+.IconContainer {
+  display: flex;
+  gap: 10px;
+}
+
+
+.ListItem span {
+  flex-grow: 1;
+}
+.Completed {
+  background-color: #f9d0f4;
+}
+
+.CompletedText {
+  text-decoration: line-through;
+}
+.CompleteIcon {
+  color:#a9c9ff;
+  border: solid 1px rgb(212, 211, 211);
+  padding: .1rem;
+  margin-left: .2rem;
+  box-shadow: 1px 1px 1px 1px #a9c9ff;
+}
+.EditInput {
+  padding: 5px;
+  margin: 5px;
+  font-size: 1rem;
+  border:none;
+  outline: none;
+  background-color: #f9d0f4;
+  border-radius: 10px;
+}
+
+.SaveIcon {
+  background-color: #a9c9ff;
+  padding: 0.4rem 0.6rem;
+  margin: 0 0.5rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.CancelIcon {
+  background-color: #a9c9ff;
+  padding: 0.4rem 0.6rem;
+  margin-left: 0.5rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
 }

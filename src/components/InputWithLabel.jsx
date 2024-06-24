@@ -20,7 +20,7 @@ export default function InputWithLabel({
         name="title"
         value={todoTitle}
         onChange={handleTitleChange}
-      
+        placeholder="Add the task"
       />
     </>
   );
@@ -30,4 +30,4 @@ InputWithLabel.propTypes = {
   children: PropTypes.node.isRequired,
   todoTitle: PropTypes.string.isRequired,
   handleTitleChange: PropTypes.func.isRequired,
-}
+};

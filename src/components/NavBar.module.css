@@ -1,0 +1,91 @@
+.NavBarContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+.NavBarMenu {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.NavBarUl {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.NavBarLi {
+  margin-left: 20px; 
+}
+
+.NavBarLi a {
+  text-decoration: none;
+  color: #3884d6;
+  font-weight: bold;
+}
+
+.NavBar a:hover {
+  color: #0056b3;
+}
+
+.NavBarIcon {
+  margin-right: 0.5rem;
+}
+
+.BurgerIconContainer {
+  margin-left: auto;
+}
+
+.BurgerIcon {
+  display:none;
+  color: #3884d6;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .NavBarMenu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .BurgerIcon {
+    display: flex; 
+  }
+
+  .NavBarUl {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: #f8f9fa;
+    width: 100%;
+    padding: 10px 0;
+    z-index: 1;
+  }
+
+  .NavBarUl.Active {
+    display: flex;
+  }
+
+  .NavBarLi {
+    margin: 10px 0;
+  }
+
+  .BurgerIconContainer {
+    margin-left: auto; 
+    margin-right: 20px; 
+  }
+}
+

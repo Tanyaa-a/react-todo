@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import YourNameComponent from "./YourNameComponent";
+import QuoteComponent from "./QuoteComponent"
 import style from "./Home.module.css";
 
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
       <Link to="/todolistpage">
         <button className={style.HomeButton}>Open TodoList</button>
       </Link>
+      <QuoteComponent/>
     </div>
   );
 };

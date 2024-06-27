@@ -1,36 +1,126 @@
-import React, { useEffect } from "react";
-import TodoList from "./TodoList";
-import TodoForm from "./AddTodoForm";
+// import { useState, useEffect } from "react";
+// import TodoList from "./components/TodoList";
+// import TodoForm from "./components/AddTodoForm";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import style from "./components/TodoListItem.module.css";
 
-// Custom hook to manage semi-persistent state using localStorage
-const useSemiPersistentState = () => {
-  const [todoList, setTodoList] = React.useState(
-    JSON.parse(localStorage.getItem("savedTodoList")) || []
-  );
+// function App() {
+//   const [todoList, setTodoList] = useState([]);
+//   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    localStorage.setItem("savedTodoList", JSON.stringify(todoList));
-  }, [todoList]);
+//   // Fetch data from Airtable
+//   async function fetchData() {
+//     const options = {
+//       method: "GET",
+//       headers: {
+//         Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
+//       },
+//     };
 
-  return [todoList, setTodoList];
-};
+//     // URL for fetching data from Airtable without sorting
+//     const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
 
-function App() {
-  const [todoList, setTodoList] = useSemiPersistentState();
-  function addTodo(newTodo) {
-    setTodoList([...todoList, newTodo]);
-  }
+//     // Inactive URL with sorting
+//     // const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}?view=Grid%20view&sort[0][field]=title&sort[0][direction]=asc`;
 
-  function removeTodo(id) {
-    const newTodoList = todoList.filter((todo) => todo.id !== id);
-    setTodoList(newTodoList);
-  }
+//     try {
+//       const response = await fetch(url, options);
+//       if (!response.ok) {
+//         throw new Error(`Error: ${response.status}`);
+//       }
+
+//       const data = await response.json();
+
+//       // Map the data to todo items
+//       const todos = data.records.map((todo) => ({
+//         id: todo.id,
+//         title: todo.fields.title,
+//       }));
+
+//       // Sort the todos by title in ascending order
+//       todos.sort((objectA, objectB) => {
+//         const titleA = objectA.title.toLowerCase();
+//         const titleB = objectB.title.toLowerCase();
+//         if (titleA < titleB) return 1;
+//         if (titleA > titleB) return -1;
+//         return 0;
+//       });
+
+//       // Set the todo list
+//       setTodoList(todos);
+//       setIsLoading(false);
+//     } catch (error) {
+//       console.error(error.message);
+//     }
+//   }
+
+//   // Fetch data from Airtable when component mounts
+//   useEffect(() => {
+//     fetchData();
+//   }, []);
+
+//   // Save todo list to localStorage when it changes and is not loading
+//   useEffect(() => {
+//     if (!isLoading)
+//       localStorage.setItem("savedTodoList", JSON.stringify(todoList));
+//   }, [todoList, isLoading]);
+
+//   // Add a new todo item
+//   function addTodo(newTodo) {
+//     setTodoList([...todoList, newTodo]);
+//   }
+
+//   // Remove a todo item by id
+//   function removeTodo(id) {
+//     const newTodoList = todoList.filter((todo) => todo.id !== id);
+//     setTodoList(newTodoList);
+//   }
+
+//   return (
+//     <BrowserRouter>
+//       <Routes>
+//         <Route
+//           path="/"
+//           element={
+//             <>
+//               <h1 className={style.TodoTitle}>Todo List</h1>
+//               <TodoForm onAddTodo={addTodo} />
+//               {isLoading ? (
+//                 <p>Loading...</p>
+//               ) : (
+//                 <TodoList onRemoveTodo={removeTodo} todoList={todoList} />
+//               )}
+//             </>
+//           }
+//         ></Route>
+//         <Route path="/new" element={<h1>New Todo List</h1>}></Route>
+//       </Routes>
+//     </BrowserRouter>
+//   );
+// }
+
+// export default App;
+
+import { Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import About from "./components/About";
+import ToDoListPage from './components/ToDoListPage';
+import NavBar from "./components/NavBar";
+import UnsplashImageFetcher from "./components/UnsplashImageFetcher"
+import 'normalize.css';
+
+const App = () => {
   return (
     <>
-      <h1>Todo List</h1>
-      <TodoForm onAddTodo={addTodo} />
-      <TodoList onRemoveTodo={removeTodo} todoList={todoList} />
+      <UnsplashImageFetcher />
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />}/>
+        <Route path="/todolistpage" element={<ToDoListPage />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
     </>
   );
-}
+};
+
 export default App;

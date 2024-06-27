@@ -1,4 +1,5 @@
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
+import PropTypes from "prop-types";
 
 export default function InputWithLabel({
   children,
@@ -19,7 +20,14 @@ export default function InputWithLabel({
         name="title"
         value={todoTitle}
         onChange={handleTitleChange}
+        placeholder="Add the task"
       />
     </>
   );
 }
+
+InputWithLabel.propTypes = {
+  children: PropTypes.node.isRequired,
+  todoTitle: PropTypes.string.isRequired,
+  handleTitleChange: PropTypes.func.isRequired,
+};

@@ -19,13 +19,16 @@ const TodoList = ({ todoList, onToggleCompleted, onRemoveTodo, onUpdateTodo}) =>
 };
 
 TodoList.propTypes = {
-  TodoList: PropTypes.arrayOf({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-  }), 
+  todoList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   onRemoveTodo: PropTypes.func.isRequired,
   onUpdateTodo: PropTypes.func.isRequired,
   onToggleCompleted: PropTypes.func.isRequired,
 };
+
 
 export default TodoList;

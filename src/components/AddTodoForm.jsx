@@ -11,7 +11,7 @@ const TodoForm = ({ onAddTodo }) => {
   };
   const handleAddTodo = (event) => {
     event.preventDefault();
-    onAddTodo({ title: todoTitle, id: String (Date.now()) });
+    onAddTodo({ title: todoTitle, id: String(Date.now()) });
     setTodoTitle("");
   };
   return (
